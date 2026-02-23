@@ -177,13 +177,10 @@
     100%{ transform:translateY(0);     opacity:1; }
   }
   .target-area.slide-in { animation:slideInDown 0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
-  
-  /* UX 개선: 오답 진동 애니메이션 속도 증가 (0.4s -> 0.25s) */
   @keyframes wrongShake {
-    0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 40%{transform:translateX(8px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)}
+    0%,100%{transform:translateX(0)} 15%{transform:translateX(-8px)} 35%{transform:translateX(8px)} 55%{transform:translateX(-5px)} 75%{transform:translateX(5px)}
   }
-  .target-area.wrong { animation:wrongShake 0.25s ease; border-color:var(--coral); background:rgba(255,124,110,0.06); }
-  
+  .target-area.wrong { animation:wrongShake 0.4s ease; border-color:var(--coral); background:rgba(255,124,110,0.06); }
   .hint-formula { display:flex; align-items:center; justify-content:center; gap:0.5rem; flex-wrap:wrap; }
   .hint-box {
     font-family:'Gaegu',cursive; font-size:2rem; font-weight:700;
@@ -224,6 +221,17 @@
     cursor:default; border-style:dashed; box-shadow:none;
   }
   .num-cell.used::after { content:'✓'; position:absolute; font-size:0.6rem; top:3px; right:5px; color:var(--grass); }
+  .action-bar { padding:0.7rem 1.2rem 1.2rem; display:flex; gap:0.7rem; }
+  .action-btn {
+    flex:1; padding:0.85rem; border-radius:16px; border:2.5px solid var(--border);
+    background:var(--white); color:var(--text); font-family:'Gaegu',cursive; font-size:1rem;
+    cursor:pointer; transition:transform 0.12s, box-shadow 0.12s; box-shadow:0 4px 0 var(--border);
+  }
+  .action-btn:active { transform:translateY(3px); box-shadow:0 1px 0 var(--border); }
+  .action-btn.primary { background:var(--grass); color:var(--white); border-color:#4db863; box-shadow:0 4px 0 #4db863; font-weight:700; }
+  .action-btn.primary:active { box-shadow:0 1px 0 #4db863; }
+  .action-btn.amber   { background:var(--peach); color:var(--white); border-color:#e09030; box-shadow:0 4px 0 #e09030; font-weight:700; }
+  .action-btn.amber:active   { box-shadow:0 1px 0 #e09030; }
 
   /* COUNTDOWN */
   .countdown-overlay {
@@ -323,24 +331,32 @@
 <body>
 <div class="app">
 
+  <!-- HOME -->
   <div class="screen active" id="homeScreen">
     <div style="padding:1.5rem 1.2rem 2rem; display:flex; flex-direction:column; gap:1.2rem; flex:1;">
       <div class="logo-wrap">
         <span class="logo-icon">
           <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <!-- 캐릭터 3 (맨 아래 왼쪽, 코랄) 작은 녀석 -->
             <rect x="4" y="62" width="36" height="36" rx="8" fill="#ff7c6e"/>
             <rect x="4" y="62" width="36" height="10" rx="8" fill="#ff9f95"/>
+            <!-- 눈 -->
             <ellipse cx="15" cy="76" rx="4.5" ry="5" fill="white"/>
             <ellipse cx="29" cy="76" rx="4.5" ry="5" fill="white"/>
             <circle cx="16.5" cy="77" r="2.5" fill="#2d1a0e"/>
             <circle cx="30.5" cy="77" r="2.5" fill="#2d1a0e"/>
             <circle cx="17.5" cy="76" r="1" fill="white"/>
             <circle cx="31.5" cy="76" r="1" fill="white"/>
+            <!-- 입 -->
             <path d="M14 86 Q22 91 30 86" stroke="#2d1a0e" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <!-- 숫자 -->
             <text x="22" y="97" font-family="'Gaegu',cursive" font-size="10" font-weight="700" fill="white" text-anchor="middle">3</text>
+            <!-- 다리 -->
             <rect x="11" y="96" width="6" height="10" rx="3" fill="#e06055"/>
             <rect x="27" y="96" width="6" height="10" rx="3" fill="#e06055"/>
 
+            <!-- 캐릭터 1 (오른쪽 아래, 초록) 작은 녀석 -->
             <rect x="70" y="62" width="36" height="36" rx="8" fill="#6dd47e"/>
             <rect x="70" y="62" width="36" height="10" rx="8" fill="#90e09e"/>
             <ellipse cx="81" cy="76" rx="4.5" ry="5" fill="white"/>
@@ -354,26 +370,36 @@
             <rect x="77" y="96" width="6" height="10" rx="3" fill="#4db863"/>
             <rect x="93" y="96" width="6" height="10" rx="3" fill="#4db863"/>
 
+            <!-- 캐릭터 2 (가운데 위, 하늘, 크게) -->
             <rect x="28" y="8" width="54" height="54" rx="12" fill="#5bc8f5"/>
             <rect x="28" y="8" width="54" height="16" rx="12" fill="#7dd6f8"/>
+            <!-- 안테나 -->
             <rect x="51" y="1" width="4" height="10" rx="2" fill="#5bc8f5"/>
             <circle cx="53" cy="1" r="4" fill="#ffcc44" stroke="#f0a800" stroke-width="1.5"/>
+            <!-- 눈 (더 크게) -->
             <ellipse cx="42" cy="30" rx="7" ry="8" fill="white"/>
             <ellipse cx="64" cy="30" rx="7" ry="8" fill="white"/>
             <circle cx="44" cy="31.5" r="4" fill="#2d1a0e"/>
             <circle cx="66" cy="31.5" r="4" fill="#2d1a0e"/>
             <circle cx="45.5" cy="30" r="1.5" fill="white"/>
             <circle cx="67.5" cy="30" r="1.5" fill="white"/>
+            <!-- 볼터치 -->
             <ellipse cx="36" cy="38" rx="4" ry="2.5" fill="#ff9f95" opacity="0.6"/>
             <ellipse cx="70" cy="38" rx="4" ry="2.5" fill="#ff9f95" opacity="0.6"/>
+            <!-- 입 -->
             <path d="M40 44 Q53 52 66 44" stroke="#2d1a0e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <!-- 숫자 -->
             <text x="55" y="58" font-family="'Gaegu',cursive" font-size="14" font-weight="700" fill="white" text-anchor="middle">2</text>
+            <!-- 팔 -->
             <rect x="14" y="24" width="16" height="7" rx="3.5" fill="#5bc8f5"/>
             <rect x="80" y="24" width="16" height="7" rx="3.5" fill="#5bc8f5"/>
+            <!-- 손 -->
             <circle cx="13" cy="27" r="5" fill="#7dd6f8"/>
             <circle cx="97" cy="27" r="5" fill="#7dd6f8"/>
+            <!-- 다리 -->
             <rect x="37" y="60" width="9" height="14" rx="4.5" fill="#3ab0e0"/>
             <rect x="60" y="60" width="9" height="14" rx="4.5" fill="#3ab0e0"/>
+
           </svg>
         </span>
         <div class="logo-title">넘버 플로우</div>
@@ -418,6 +444,7 @@
     </div>
   </div>
 
+  <!-- GAME SCREEN -->
   <div class="screen" id="gameScreen" style="position:relative;">
     <div class="countdown-overlay" id="countdownOverlay">
       <div class="countdown-num" id="countdownNum">3</div>
@@ -442,10 +469,12 @@
     <div class="grid-wrap">
       <div class="num-grid" id="numGrid"></div>
     </div>
+
   </div>
 
 </div>
 
+<!-- Result Overlay -->
 <div class="overlay" id="overlay">
   <div class="result-card" id="resultCard">
     <div class="result-icon" id="resIcon">🎉</div>
@@ -474,7 +503,6 @@ const LEVELS = {
 
 let state = {
   level: 'easy', numbers: [], target: 0, selected: [], _solution: [],
-  _hint: null, _solutionNeeded: 2,
   qIndex: 0, qTimes: [], qStart: 0, elapsed: 0, timerInterval: null,
   best: { easy: null, medium: null, hard: null },
   cleared: { easy: false, medium: false, hard: false },
@@ -540,9 +568,8 @@ function loadQuestion() {
   idxs.forEach((idx, i) => { state.numbers[idx] = solutionNums[i]; });
   state._solution = idxs;
 
-  // UX 개선: 쉬움 난이도만 힌트 제공, 그 외 난이도는 힌트 숨김
-  state._hint = state.level === 'easy' ? solutionNums[0] : null;
-  state._solutionNeeded = state.level === 'easy' ? cfg.solCount - 1 : cfg.solCount;
+  // 쉬움: 첫 번째 정답 숫자를 수식에 힌트로 고정, selected/preselected 없음
+  state._hint = solutionNums[0];
   state.selected = [];
 
   const labels = { easy:'🐣 쉬움', medium:'🐬 보통', hard:'🦁 어려움' };
@@ -583,9 +610,12 @@ function toggleCell(idx, cell) {
   else          { state.selected.push(idx);       cell.classList.add('selected'); }
   renderFormula();
 
-  if (state.selected.length === state._solutionNeeded) {
-    const hintVal = state._hint !== null ? state._hint : 0;
-    const sum = hintVal + state.selected.reduce((s, i) => s + state.numbers[i], 0);
+  // 쉬움: 1개 선택 시 바로 판정 (힌트 숫자 + 선택 숫자)
+  // 보통/어려움: solCount만큼 선택 시 판정
+  // 힌트 제외 나머지 개수만큼 선택하면 판정
+  const needed = state._solution.length - 1;
+  if (state.selected.length === needed) {
+    const sum = state._hint + state.selected.reduce((s, i) => s + state.numbers[i], 0);
     if (sum === state.target) submitAnswer(); else showWrong();
   }
 }
@@ -599,51 +629,46 @@ function showWrong() {
     document.querySelectorAll('.num-cell').forEach(c => c.classList.remove('selected'));
     area.classList.remove('wrong');
     renderFormula();
-  }, 250); // UX 개선: 오답 확인 후 초기화 대기 시간 단축 (400ms -> 250ms)
+  }, 400);
 }
 
 function renderFormula() {
   const wrap = document.getElementById('hintFormula');
   wrap.innerHTML = '';
-  let elements = [];
 
-  // 힌트가 있으면 첫 번째 칸 고정
-  if (state._hint !== null) {
-    const box0 = document.createElement('div');
-    box0.className = 'hint-box filled';
-    box0.textContent = state._hint;
-    elements.push(box0);
-  }
+  // 첫 번째 칸: 힌트 숫자 고정
+  const box0 = document.createElement('div');
+  box0.className = 'hint-box filled';
+  box0.textContent = state._hint;
+  wrap.appendChild(box0);
 
-  // 나머지 유저 선택 칸 추가
-  for (let i = 0; i < state._solutionNeeded; i++) {
+  // 나머지 칸: 유저 선택 (easy/medium 1칸, hard 2칸)
+  const remaining = state._solution.length - 1;
+  for (let i = 0; i < remaining; i++) {
+    const op = document.createElement('span'); op.className='hint-op'; op.textContent='+'; wrap.appendChild(op);
     const box = document.createElement('div');
     box.className = 'hint-box' + (i < state.selected.length ? ' filled' : '');
     box.textContent = i < state.selected.length ? state.numbers[state.selected[i]] : '?';
-    elements.push(box);
+    wrap.appendChild(box);
   }
-
-  // 요소들 사이에 '+' 기호 삽입
-  elements.forEach((el, index) => {
-    wrap.appendChild(el);
-    if (index < elements.length - 1) {
-      const op = document.createElement('span'); 
-      op.className='hint-op'; op.textContent='+'; 
-      wrap.appendChild(op);
-    }
-  });
 
   const eq = document.createElement('span'); eq.className='hint-eq'; eq.textContent='='; wrap.appendChild(eq);
   const tgt = document.createElement('span'); tgt.className='hint-target'; tgt.textContent=state.target; wrap.appendChild(tgt);
 }
 
+function clearSelection() {
+  state.selected = [];
+  document.querySelectorAll('.num-cell').forEach(c => c.classList.remove('selected'));
+  renderFormula();
+}
+
 function submitAnswer() {
-  const hintVal = state._hint !== null ? state._hint : 0;
-  const sum = hintVal + state.selected.reduce((s, i) => s + state.numbers[i], 0);
+  // 쉬움: hint + 선택 숫자, 나머지: 선택 숫자 합산
+  const sum = state._hint + state.selected.reduce((s, i) => s + state.numbers[i], 0);
   if (sum !== state.target) return;
-  
   state.qTimes.push(state.elapsed - state.qStart);
 
+  // 정답 셀 burst → fillGreen 순서로 연출
   state.selected.forEach(i => {
     const cell = document.querySelector(`.num-cell[data-idx="${i}"]`);
     if (!cell) return;
@@ -654,6 +679,7 @@ function submitAnswer() {
     }, 350);
   });
 
+  // 별 파티클
   state.selected.forEach(i => {
     const cell = document.querySelector(`.num-cell[data-idx="${i}"]`);
     if (!cell) return;
@@ -661,6 +687,7 @@ function submitAnswer() {
     launchStars(rect.left + rect.width / 2, rect.top + rect.height / 2);
   });
 
+  // 수식 칸을 선택값으로 고정 (selected 비우기 전에)
   const wrap = document.getElementById('hintFormula');
   wrap.querySelectorAll('.hint-box:not(.filled)').forEach((box, i) => {
     if (i < state.selected.length) {
@@ -679,39 +706,35 @@ function submitAnswer() {
     setTimeout(() => showResult(), ANIM_DELAY);
   } else {
     setTimeout(() => {
-      const cfg = LEVELS[state.level];
-      const size = cfg.gridSize * cfg.gridSize;
-      state.qStart = state.elapsed;
-      const prevTarget = state.target;
-      const solCount = cfg.solCount;
-      let solutionNums, newTarget, attempts = 0;
-      do {
-        solutionNums = Array.from({length: solCount}, () => Math.floor(Math.random() * cfg.maxNum) + 1);
-        newTarget = solutionNums.reduce((s, n) => s + n, 0);
-        attempts++;
-      } while (newTarget === prevTarget && attempts < 10);
-      
-      state.target = newTarget;
-      state.numbers = Array.from({length: size}, () => {
-        if (state.level === 'easy') return Math.floor(Math.random() * cfg.maxNum) + 1;
-        let n;
-        do { n = Math.floor(Math.random() * cfg.maxNum) + 1; } while (n >= state.target);
-        return n;
-      });
-      
-      const pick = shuffle([...Array(size).keys()]).slice(0, solCount);
-      pick.forEach((idx, i) => { state.numbers[idx] = solutionNums[i]; });
-      state._solution = pick;
-      
-      state._hint = state.level === 'easy' ? solutionNums[0] : null;
-      state._solutionNeeded = state.level === 'easy' ? cfg.solCount - 1 : cfg.solCount;
-      state.selected = [];
+    const cfg = LEVELS[state.level];
+    const size = cfg.gridSize * cfg.gridSize;
+    state.qStart = state.elapsed;
+    const prevTarget = state.target;
+    const solCount = cfg.solCount;
+    let solutionNums, newTarget, attempts = 0;
+    do {
+      solutionNums = Array.from({length: solCount}, () => Math.floor(Math.random() * cfg.maxNum) + 1);
+      newTarget = solutionNums.reduce((s, n) => s + n, 0);
+      attempts++;
+    } while (newTarget === prevTarget && attempts < 10);
+    state.target = newTarget;
+    state.numbers = Array.from({length: size}, () => {
+      if (state.level === 'easy') return Math.floor(Math.random() * cfg.maxNum) + 1;
+      let n;
+      do { n = Math.floor(Math.random() * cfg.maxNum) + 1; } while (n >= state.target);
+      return n;
+    });
+    const pick = shuffle([...Array(size).keys()]).slice(0, solCount);
+    pick.forEach((idx, i) => { state.numbers[idx] = solutionNums[i]; });
+    state._solution = pick;
+    state._hint = solutionNums[0];
+    state.selected = [];
 
-      document.getElementById('puzzleNum').textContent = `${state.qIndex + 1} / ${TOTAL_Q}`;
-      renderDots(); renderGrid();
-      const targetArea = document.querySelector('.target-area');
-      targetArea.classList.remove('slide-in'); void targetArea.offsetWidth; targetArea.classList.add('slide-in');
-      renderFormula();
+    document.getElementById('puzzleNum').textContent = `${state.qIndex + 1} / ${TOTAL_Q}`;
+    renderDots(); renderGrid();
+    const targetArea = document.querySelector('.target-area');
+    targetArea.classList.remove('slide-in'); void targetArea.offsetWidth; targetArea.classList.add('slide-in');
+    renderFormula();
     }, ANIM_DELAY);
   }
 }
