@@ -22,15 +22,25 @@
     --white:    #ffffff;
   }
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html {
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Noto Sans KR', sans-serif;
-    min-height: 100dvh;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0; left: 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    overflow-x: hidden;
+    touch-action: none;
   }
   body::before {
     content: '';
@@ -50,13 +60,14 @@
   .app {
     width: 100%;
     max-width: 420px;
-    min-height: 100dvh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
     z-index: 1;
+    overflow: hidden;
   }
-  .screen { display: none; flex-direction: column; flex: 1; }
+  .screen { display: none; flex-direction: column; flex: 1; overflow: hidden; }
   .screen.active { display: flex; }
 
   /* HOME */
@@ -65,8 +76,8 @@
     display: block;
     margin: 0 auto;
     animation: float 3s ease-in-out infinite;
-    filter: drop-shadow(0 8px 16px rgba(91,200,245,0.25)) drop-shadow(0 4px 8px rgba(255,124,110,0.2));
-    width: 110px; height: 110px;
+    filter: drop-shadow(0 8px 18px rgba(109,212,126,0.4)) drop-shadow(0 3px 6px rgba(0,0,0,0.1));
+    width: 120px; height: 130px;
   }
   @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
   .logo-title {
@@ -336,69 +347,69 @@
     <div style="padding:1.5rem 1.2rem 2rem; display:flex; flex-direction:column; gap:1.2rem; flex:1;">
       <div class="logo-wrap">
         <span class="logo-icon">
-          <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="120" height="130" viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-            <!-- 캐릭터 3 (맨 아래 왼쪽, 코랄) 작은 녀석 -->
-            <rect x="4" y="62" width="36" height="36" rx="8" fill="#ff7c6e"/>
-            <rect x="4" y="62" width="36" height="10" rx="8" fill="#ff9f95"/>
-            <!-- 눈 -->
-            <ellipse cx="15" cy="76" rx="4.5" ry="5" fill="white"/>
-            <ellipse cx="29" cy="76" rx="4.5" ry="5" fill="white"/>
-            <circle cx="16.5" cy="77" r="2.5" fill="#2d1a0e"/>
-            <circle cx="30.5" cy="77" r="2.5" fill="#2d1a0e"/>
-            <circle cx="17.5" cy="76" r="1" fill="white"/>
-            <circle cx="31.5" cy="76" r="1" fill="white"/>
-            <!-- 입 -->
-            <path d="M14 86 Q22 91 30 86" stroke="#2d1a0e" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <!-- 숫자 -->
-            <text x="22" y="97" font-family="'Gaegu',cursive" font-size="10" font-weight="700" fill="white" text-anchor="middle">3</text>
-            <!-- 다리 -->
-            <rect x="11" y="96" width="6" height="10" rx="3" fill="#e06055"/>
-            <rect x="27" y="96" width="6" height="10" rx="3" fill="#e06055"/>
+            <!-- 왼팔 (구불구불하게 뻗음) -->
+            <path d="M18 58 C8 52 2 44 6 36" stroke="#4db863" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <!-- 왼손 -->
+            <circle cx="6" cy="33" r="6" fill="#6dd47e" stroke="#4db863" stroke-width="2"/>
 
-            <!-- 캐릭터 1 (오른쪽 아래, 초록) 작은 녀석 -->
-            <rect x="70" y="62" width="36" height="36" rx="8" fill="#6dd47e"/>
-            <rect x="70" y="62" width="36" height="10" rx="8" fill="#90e09e"/>
-            <ellipse cx="81" cy="76" rx="4.5" ry="5" fill="white"/>
-            <ellipse cx="95" cy="76" rx="4.5" ry="5" fill="white"/>
-            <circle cx="82.5" cy="77" r="2.5" fill="#2d1a0e"/>
-            <circle cx="96.5" cy="77" r="2.5" fill="#2d1a0e"/>
-            <circle cx="83.5" cy="76" r="1" fill="white"/>
-            <circle cx="97.5" cy="76" r="1" fill="white"/>
-            <path d="M80 86 Q88 91 96 86" stroke="#2d1a0e" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <text x="88" y="97" font-family="'Gaegu',cursive" font-size="10" font-weight="700" fill="white" text-anchor="middle">1</text>
-            <rect x="77" y="96" width="6" height="10" rx="3" fill="#4db863"/>
-            <rect x="93" y="96" width="6" height="10" rx="3" fill="#4db863"/>
+            <!-- 오른팔 (반대 방향으로 자연스럽게) -->
+            <path d="M102 58 C112 50 118 42 116 33" stroke="#4db863" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <!-- 오른손 -->
+            <circle cx="116" cy="30" r="6" fill="#6dd47e" stroke="#4db863" stroke-width="2"/>
 
-            <!-- 캐릭터 2 (가운데 위, 하늘, 크게) -->
-            <rect x="28" y="8" width="54" height="54" rx="12" fill="#5bc8f5"/>
-            <rect x="28" y="8" width="54" height="16" rx="12" fill="#7dd6f8"/>
-            <!-- 안테나 -->
-            <rect x="51" y="1" width="4" height="10" rx="2" fill="#5bc8f5"/>
-            <circle cx="53" cy="1" r="4" fill="#ffcc44" stroke="#f0a800" stroke-width="1.5"/>
-            <!-- 눈 (더 크게) -->
-            <ellipse cx="42" cy="30" rx="7" ry="8" fill="white"/>
-            <ellipse cx="64" cy="30" rx="7" ry="8" fill="white"/>
-            <circle cx="44" cy="31.5" r="4" fill="#2d1a0e"/>
-            <circle cx="66" cy="31.5" r="4" fill="#2d1a0e"/>
-            <circle cx="45.5" cy="30" r="1.5" fill="white"/>
-            <circle cx="67.5" cy="30" r="1.5" fill="white"/>
+            <!-- 더하기 몸통 세로 막대 -->
+            <rect x="40" y="10" width="40" height="100" rx="10" fill="#6dd47e"/>
+            <!-- 더하기 몸통 가로 막대 -->
+            <rect x="8" y="42" width="104" height="36" rx="10" fill="#6dd47e"/>
+
+            <!-- 격자 패턴 - 세로 막대 -->
+            <line x1="52" y1="10" x2="52" y2="110" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="64" y1="10" x2="64" y2="110" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="76" y1="10" x2="76" y2="110" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="40" y1="22" x2="80" y2="22" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="40" y1="34" x2="80" y2="34" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="40" y1="88" x2="80" y2="88" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="40" y1="100" x2="80" y2="100" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <!-- 격자 패턴 - 가로 막대 -->
+            <line x1="40" y1="54" x2="80" y2="54" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="40" y1="66" x2="80" y2="66" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="8"  y1="54" x2="40" y2="54" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="8"  y1="66" x2="40" y2="66" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="20" y1="42" x2="20" y2="78" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="32" y1="42" x2="32" y2="78" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="80" y1="54" x2="112" y2="54" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="80" y1="66" x2="112" y2="66" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="88" y1="42" x2="88" y2="78" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+            <line x1="100" y1="42" x2="100" y2="78" stroke="#4db863" stroke-width="1.5" opacity="0.6"/>
+
+            <!-- 눈 흰자 -->
+            <ellipse cx="50" cy="62" rx="10" ry="11" fill="white"/>
+            <ellipse cx="70" cy="62" rx="10" ry="11" fill="white"/>
+            <!-- 눈동자 -->
+            <circle cx="52" cy="64" r="6" fill="#1a1a2e"/>
+            <circle cx="72" cy="64" r="6" fill="#1a1a2e"/>
+            <!-- 눈 하이라이트 -->
+            <circle cx="54.5" cy="61.5" r="2.5" fill="white"/>
+            <circle cx="74.5" cy="61.5" r="2.5" fill="white"/>
+
             <!-- 볼터치 -->
-            <ellipse cx="36" cy="38" rx="4" ry="2.5" fill="#ff9f95" opacity="0.6"/>
-            <ellipse cx="70" cy="38" rx="4" ry="2.5" fill="#ff9f95" opacity="0.6"/>
+            <ellipse cx="42" cy="72" rx="5" ry="3" fill="#ff9f95" opacity="0.7"/>
+            <ellipse cx="78" cy="72" rx="5" ry="3" fill="#ff9f95" opacity="0.7"/>
+
             <!-- 입 -->
-            <path d="M40 44 Q53 52 66 44" stroke="#2d1a0e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <!-- 숫자 -->
-            <text x="55" y="58" font-family="'Gaegu',cursive" font-size="14" font-weight="700" fill="white" text-anchor="middle">2</text>
-            <!-- 팔 -->
-            <rect x="14" y="24" width="16" height="7" rx="3.5" fill="#5bc8f5"/>
-            <rect x="80" y="24" width="16" height="7" rx="3.5" fill="#5bc8f5"/>
-            <!-- 손 -->
-            <circle cx="13" cy="27" r="5" fill="#7dd6f8"/>
-            <circle cx="97" cy="27" r="5" fill="#7dd6f8"/>
-            <!-- 다리 -->
-            <rect x="37" y="60" width="9" height="14" rx="4.5" fill="#3ab0e0"/>
-            <rect x="60" y="60" width="9" height="14" rx="4.5" fill="#3ab0e0"/>
+            <path d="M52 76 Q60 83 68 76" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+            <!-- 왼다리 (살짝 바깥으로 벌어진 느낌) -->
+            <path d="M52 108 C50 116 46 122 44 128" stroke="#3a3a3a" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <!-- 왼발 -->
+            <path d="M40 127 C42 130 50 130 52 127" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+            <!-- 오른다리 -->
+            <path d="M68 108 C70 116 74 122 76 128" stroke="#3a3a3a" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <!-- 오른발 -->
+            <path d="M72 127 C74 130 82 130 84 127" stroke="#2a2a2a" stroke-width="5" stroke-linecap="round" fill="none"/>
 
           </svg>
         </span>
@@ -493,6 +504,9 @@
 </div>
 
 <script>
+// 모바일 스크롤/화면 이동 완전 방지
+document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+document.addEventListener('touchstart', e => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
 const TOTAL_Q = 5;
 const LOCK_ENABLED = false;
 const LEVELS = {
