@@ -178,10 +178,10 @@
   .target-area {
     margin:1rem 1.2rem 0.5rem;
     background:var(--white); border:2.5px solid var(--border); border-radius:24px;
-    padding:1rem 1.5rem; display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+    padding:1.2rem 1.5rem 1.4rem; display:flex; flex-direction:column; align-items:center; gap:0.6rem;
     box-shadow:0 4px 0 var(--border); transition:border-color 0.2s, background 0.2s;
   }
-  .target-label { font-family:'Gaegu',cursive; font-size:0.85rem; color:var(--muted); }
+  .target-label { font-family:'Gaegu',cursive; font-size:1rem; color:var(--muted); }
   @keyframes slideInDown {
     0%  { transform:translateY(-20px); opacity:0; }
     60% { transform:translateY(2px);   opacity:1; }
@@ -192,12 +192,12 @@
     0%,100%{transform:translateX(0)} 15%{transform:translateX(-8px)} 35%{transform:translateX(8px)} 55%{transform:translateX(-5px)} 75%{transform:translateX(5px)}
   }
   .target-area.wrong { animation:wrongShake 0.4s ease; border-color:var(--coral); background:rgba(255,124,110,0.06); }
-  .hint-formula { display:flex; align-items:center; justify-content:center; gap:0.5rem; flex-wrap:wrap; }
+  .hint-formula { display:flex; align-items:center; justify-content:center; gap:0.6rem; flex-wrap:wrap; }
   .hint-box {
-    font-family:'Gaegu',cursive; font-size:2rem; font-weight:700;
-    min-width:3rem; height:3.2rem; display:flex; align-items:center; justify-content:center;
-    border-radius:14px; border:2.5px dashed var(--border); background:var(--bg); color:var(--muted);
-    transition:all 0.15s; padding:0 0.4rem; box-shadow:0 3px 0 var(--border);
+    font-family:'Gaegu',cursive; font-size:2.6rem; font-weight:700;
+    min-width:3.6rem; height:3.8rem; display:flex; align-items:center; justify-content:center;
+    border-radius:16px; border:2.5px dashed var(--border); background:var(--bg); color:var(--muted);
+    transition:all 0.15s; padding:0 0.5rem; box-shadow:0 3px 0 var(--border);
   }
   .hint-box.filled {
     border-style:solid; border-color:var(--sky); background:rgba(91,200,245,0.12); color:#1a8ab5;
@@ -209,15 +209,15 @@
     background:rgba(255,124,110,0.12) !important; color:var(--coral) !important;
     box-shadow:0 3px 0 rgba(255,124,110,0.3) !important;
   }
-  .hint-op     { font-family:'Gaegu',cursive; font-size:1.8rem; font-weight:700; color:var(--muted); }
-  .hint-eq     { font-family:'Gaegu',cursive; font-size:1.8rem; font-weight:700; color:var(--muted); }
-  .hint-target { font-family:'Gaegu',cursive; font-size:2rem; font-weight:700; color:var(--coral); text-shadow:2px 2px 0 rgba(255,124,110,0.2); }
+  .hint-op     { font-family:'Gaegu',cursive; font-size:2.2rem; font-weight:700; color:var(--muted); }
+  .hint-eq     { font-family:'Gaegu',cursive; font-size:2.2rem; font-weight:700; color:var(--muted); }
+  .hint-target { font-family:'Gaegu',cursive; font-size:2.8rem; font-weight:700; color:var(--coral); text-shadow:2px 2px 0 rgba(255,124,110,0.2); }
   .grid-wrap { padding:0.5rem 1.2rem; flex:1; }
   .num-grid  { display:grid; gap:8px; }
   .num-cell {
     aspect-ratio:1; border-radius:16px; background:var(--white); border:2.5px solid var(--border);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Gaegu',cursive; font-size:1.5rem; font-weight:700;
+    font-family:'Gaegu',cursive; font-size:2.2rem; font-weight:700;
     cursor:pointer; transition:transform 0.12s, box-shadow 0.12s, border-color 0.12s, background 0.12s;
     user-select:none; -webkit-user-select:none; box-shadow:0 3px 0 var(--border); color:var(--text);
     position:relative;
